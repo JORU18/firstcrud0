@@ -22,4 +22,15 @@ Route::get('/', function () {
   
 });
 
+Route::resource('post',App\Http\Controllers\Dashboard\PostController::class);
 
+// Route::get('post', [App\Http\Controllers\Dashboard\PostController::class,'index']);
+// Route::get('post/{post}', [App\Http\Controllers\Dashboard\PostController::class,'show']);
+// Route::get('post/create', [App\Http\Controllers\Dashboard\PostController::class,'create']);
+// Route::get('post/{post}/edit', [App\Http\Controllers\Dashboard\PostController::class,'edit']);
+
+
+// Route::post('post', [App\Http\Controllers\Dashboard\PostController::class,'store']);
+// Route::post('post/{post}', [App\Http\Controllers\Dashboard\PostController::class,'update']);
+
+// Route::delete('post/{post}', [App\Http\Controllers\Dashboard\PostController::class,'delete']);
