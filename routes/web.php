@@ -24,6 +24,8 @@ Route::get('/', function () {
 
 Route::resource('post',App\Http\Controllers\Dashboard\PostController::class);
 
+
+
 // Route::get('post', [App\Http\Controllers\Dashboard\PostController::class,'index']);
 // Route::get('post/{post}', [App\Http\Controllers\Dashboard\PostController::class,'show']);
 // Route::get('post/create', [App\Http\Controllers\Dashboard\PostController::class,'create']);

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\StoreRequest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Symfony\Component\VarDumper\VarDumper;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -39,10 +40,34 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {   
 
-    dd($request);
+        //solo pasan los datos que se validen
+        // $validated=$request->validate([
+        //     "title"=>"required|min:5|max:500",
+        //     "slug"=>"required|min:5|max:500",
+        //     "content"=>"required|min:7",
+        //     "description"=>"required|min:7",
+        //  
+  
+        //     "category_id"=>"required|integer"
+
+        // ]);
+        // dd($validated);
+
+
+        // $validated=$request->validate(StoreRequest::myRules());
+        // dd($validated);
+
+
+        // $validated=Validator::make($request->all(),StoreRequest::myRules());
+        // // dd($validated->errors());
+        // dd($validated->fails());
+
+
+    $data = array_merge($request->all(),['image' => '']);
+    Post::create($data);
 
     }
 
