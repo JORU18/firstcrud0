@@ -1,6 +1,10 @@
 @extends('dashboard.layout')
 
-<section>
+@section('content')
+    
+
+    
+
     <h1>Crear Post</h1>
 
 @include('dashboard.fragment._errors-form')
@@ -32,7 +36,6 @@
 <select name="posted" >
     <option value="not">No</option>
     <option value="yes">Si</option>
-</select>
 
 
 
@@ -53,5 +56,4 @@
 
 </form> 
 
-
-</section>
+@endsection
