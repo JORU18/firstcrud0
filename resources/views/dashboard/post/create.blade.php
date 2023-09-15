@@ -16,7 +16,7 @@
 
 
 <label for="">Slug</label>
-<input type="text" name="slug">
+<input type="text" name="slug" disabled value="hola perrito">
 
 
 <label for="">Categoria</label>

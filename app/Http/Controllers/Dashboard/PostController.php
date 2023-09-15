@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\StoreRequest;
 use App\Models\Category;
+
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-
+// use Illuminate\Support\Facades\Validator;
+use illuminate\Support\Str;
 class PostController extends Controller
 {
     /**
@@ -27,11 +28,10 @@ class PostController extends Controller
     public function create()
     {
 
-       
         $categories=Category::pluck('id','title');
-
+ 
         
-      echo view('dashboard.post.create',compact('categories'));
+        echo view('dashboard.post.create',compact('categories'));
 
 
         //
@@ -42,6 +42,7 @@ class PostController extends Controller
      */
     public function store(StoreRequest $request)
     {   
+        Post::create($request->validated());
 
         //solo pasan los datos que se validen
         // $validated=$request->validate([
@@ -65,9 +66,12 @@ class PostController extends Controller
         // // dd($validated->errors());
         // dd($validated->fails());
 
+//        $data=$request->validated();
+//        $data['slug']=Str::slug($data['title']);
+// dd($data);
 
-    $data = array_merge($request->all(),['image' => '']);
-    Post::create($data);
+    // $data = array_merge($data,['image' => '']);
+   
 
     }
 

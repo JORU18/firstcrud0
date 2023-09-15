@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
+use illuminate\Support\Str;
 
 class StoreRequest extends FormRequest
 {
@@ -10,11 +11,22 @@ class StoreRequest extends FormRequest
      * Determine if the user is authorized to make this request.
      */
 
+protected  function prepareForValidation(){
+
+$this->merge(
+['slug'=>str($this->title)->slug()]
+// 'slug' =>Str::slug($this->title)
+
+);
+
+}
+
+
 static public function myRules(){
 
 return [
     "title"=>"required|min:5|max:500",
-    "slug"=>"required|min:5|max:500",
+    "slug"=>"required|min:5|max:500|unique:posts",
     "content"=>"required|min:7",
     "description"=>"required|min:7",
 
@@ -39,7 +51,7 @@ return [
     {
         return [
                 "title"=>"required|min:5|max:500",
-                "slug"=>"required|min:5|max:500",
+                "slug"=>"required|min:5|max:500|unique:posts",
                 "content"=>"required|min:7",
                 "description"=>"required|min:7",
                 "posted"=>"required",

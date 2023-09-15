@@ -7,7 +7,7 @@
     <title>Dashboard</title>
 </head>
 <body>
-    
+
 @yield('content')
 
 
