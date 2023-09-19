@@ -32,16 +32,18 @@
 
     <tr>
     <td>{{$p->title}}</td>
-    <td>CATEGHORIA</td>
+    <td>CATEGORIA</td>
     <td>{{$p->posted}}</td>
     <td>
 <a href="{{route("post.edit",$p)}}">Editar</a>
 <a href="{{route("post.show",$p)}}">Ver</a>
 
 
-<form action="{{route("post.destroy",$p)}}">
-@method("DELETE")
-@csrf
+<form action="{{route("post.destroy",$p)}}" method="post">
+    @method("DELETE")
+    @csrf
+   
+
 <button type="submit">Eliminar</button>
 
 </form>

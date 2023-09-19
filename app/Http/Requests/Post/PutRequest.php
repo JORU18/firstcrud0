@@ -17,7 +17,7 @@ class PutRequest extends FormRequest
 static public function myRules(){
 
 return [
-    "title"=>"required|min:5|max:500",
+    "title"=>"required",
    // "slug"=>"required|min:5|max:500|unique:posts",
     "content"=>"required|min:7",
     "description"=>"required|min:7",
@@ -42,7 +42,7 @@ return [
     public function rules(): array
     {
         return [
-                "title"=>"required|min:5|max:500",
+                "title"=>"required",
                 //"slug"=>"required|min:5|max:500|unique:posts",
                 "content"=>"required|min:7",
                 "description"=>"required|min:7",
