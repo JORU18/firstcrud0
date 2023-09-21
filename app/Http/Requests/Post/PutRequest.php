@@ -14,20 +14,21 @@ class PutRequest extends FormRequest
 
 
 
-static public function myRules(){
+    static public function myRules()
+    {
 
-return [
-    "title"=>"required",
-   // "slug"=>"required|min:5|max:500|unique:posts",
-    "content"=>"required|min:7",
-    "description"=>"required|min:7",
 
-    "posted"=>"required",
-    "category_id"=>"required|integer"
+        
+        return [
+            "title" => "required",
+           "slug"=>"required|min:5|max:500|unique:posts",
+            "content" => "required|min:7",
+            "description" => "required|min:7",
+            "posted" => "required",
+            "category_id" => "required|integer"
 
-];
-
-}
+        ];
+    }
 
     public function authorize(): bool
     {
@@ -41,14 +42,15 @@ return [
      */
     public function rules(): array
     {
+
         return [
-                "title"=>"required",
-                //"slug"=>"required|min:5|max:500|unique:posts",
-                "content"=>"required|min:7",
-                "description"=>"required|min:7",
-                "posted"=>"required",
-                "category_id"=>"required|integer"
-            
-            ];
+            "title" => "required",
+            "slug"=>"required|min:5|max:500|unique:posts,slug,".$this->route("post")->id,
+            "content" => "required|min:7",
+            "description" => "required|min:7",
+            "posted" => "required",
+            "category_id" => "required|integer"
+
+        ];
     }
 }

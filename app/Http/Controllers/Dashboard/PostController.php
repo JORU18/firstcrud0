@@ -50,7 +50,7 @@ class PostController extends Controller
     public function store(StoreRequest $request)
     {
         Post::create($request->validated());
-        return to_route("post.index");
+        return to_route("post.index")->with('status', "Registro Creado");
 
         //solo pasan los datos que se validen
         // $validated=$request->validate([
@@ -115,9 +115,10 @@ class PostController extends Controller
     public function update(PutRequest $request, Post $post)
     {
 
+        // $request->session()->flash('status', "Registro Actualziado");
 
         $post->update($request->validated());
-        return to_route("post.index");
+        return to_route("post.index")->with('status', "Registro Actualziado");
         //
     }
 
@@ -129,6 +130,6 @@ class PostController extends Controller
         //
         echo "destroy";
         $post->delete();
-        return to_route("post.index");
+        return to_route("post.index")->with('status', "Registro Eliminado");
     }
 }

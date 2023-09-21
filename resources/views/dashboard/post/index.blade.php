@@ -1,9 +1,7 @@
 @extends('dashboard.layout')
 
 @section('content')
-    
-
-<a href="{{route("post.create")}}">Crear</a>
+    <a href="{{ route('post.create') }}">Crear</a>
 
 
 
@@ -12,55 +10,46 @@
 
     <table>
         <thead>
-    <tr>
-    <th>Titulo</th>
-    <th>Categoria</th>
-    <th>Posted</th>
-    <th>Acciones</th>
+            <tr>
+                <th>Titulo</th>
+                <th>Categoria</th>
+                <th>Posted</th>
+                <th>Acciones</th>
 
 
-    </tr>
+            </tr>
 
-    </thead>
-
-
-    <tbody>
-
-@foreach ($posts as $p)
-
-    
-
-    <tr>
-    <td>{{$p->title}}</td>
-    <td>CATEGORIA</td>
-    <td>{{$p->posted}}</td>
-    <td>
-<a href="{{route("post.edit",$p)}}">Editar</a>
-<a href="{{route("post.show",$p)}}">Ver</a>
+        </thead>
 
 
-<form action="{{route("post.destroy",$p)}}" method="post">
-    @method("DELETE")
-    @csrf
-   
+        <tbody>
 
-<button type="submit">Eliminar</button>
-
-</form>
-
-    </td>
-
-    </tr>
-
-@endforeach
+            @foreach ($posts as $p)
+                <tr>
+                    <td>{{ $p->title }}</td>
+                    <td>CATEGORIA</td>
+                    <td>{{ $p->posted }}</td>
+                    <td>
+                        <a href="{{ route('post.edit', $p) }}">Editar</a>
+                        <a href="{{ route('post.show', $p) }}">Ver</a>
 
 
-    </tbody>
+                        <form action="{{ route('post.destroy', $p) }}" method="post">
+                            @method('DELETE')
+                            @csrf
+
+
+                            <button type="submit">Eliminar</button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+            @endforeach
+
+
+        </tbody>
     </table>
-{{$posts->links()}}
-
-
-
-
-
+    {{ $posts->links() }}
 @endsection
