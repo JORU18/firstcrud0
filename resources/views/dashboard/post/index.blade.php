@@ -27,7 +27,9 @@
             @foreach ($posts as $p)
                 <tr>
                     <td>{{ $p->title }}</td>
-                    <td>CATEGORIA</td>
+                    <td>
+                        {{$p->category->title}}
+                    </td>
                     <td>{{ $p->posted }}</td>
                     <td>
                         <a href="{{ route('post.edit', $p) }}">Editar</a>

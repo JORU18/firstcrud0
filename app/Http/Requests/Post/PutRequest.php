@@ -4,6 +4,7 @@ namespace App\Http\Requests\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
 use illuminate\Support\Str;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class PutRequest extends FormRequest
 {
@@ -49,7 +50,8 @@ class PutRequest extends FormRequest
             "content" => "required|min:7",
             "description" => "required|min:7",
             "posted" => "required",
-            "category_id" => "required|integer"
+            "category_id" => "required|integer",
+            "image"=>"mimes:jpeg,jpg,png|max:10240"
 
         ];
     }

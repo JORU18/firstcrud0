@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Post\StoreRequest;
 use App\Http\Requests\Post\PutRequest;
+use Termwind\Components\Dd;
+
 // use Illuminate\Http\Request;
 // // use Illuminate\Support\Facades\Validator;
 // use illuminate\Support\Str;
@@ -20,7 +22,8 @@ class PostController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+   {  
+        // dd(Category::find(3)->posts->pluck("title"));
         $posts = Post::paginate(2);
         //return redirect("/post/create");
         //return redirect()->route("post.create");
@@ -34,7 +37,7 @@ class PostController extends Controller
      */
     public function create()
     {
-
+      
         $categories = Category::pluck('id', 'title');
         $post = new Post();
 
@@ -112,12 +115,21 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
     public function update(PutRequest $request, Post $post)
     {
 
+        $data=$request->validated();
+        if (isset($data["image"]) ) {
+            $data["image"]=$filename=time().".".$data["image"]->extension();
+
+
+            $request->image->move(public_path("image",$filename));
+        }
+
         // $request->session()->flash('status', "Registro Actualziado");
 
-        $post->update($request->validated());
+        $post->update($data);
         return to_route("post.index")->with('status', "Registro Actualziado");
         //
     }
